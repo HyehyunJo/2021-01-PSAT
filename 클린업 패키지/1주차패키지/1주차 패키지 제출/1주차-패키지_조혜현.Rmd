@@ -1,0 +1,248 @@
+---
+title: "1주차 패키지 과제"
+author: "조혜현"
+date: '2021 3 8 '
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+# **Chapter1**
+
+# 문제 0
+```{r}
+library(plyr)
+library(tidyverse)
+library(data.table)
+
+setwd("C:/Users/iyuo1/OneDrive/Documents/P-SAT/1주차패키지")
+data<-fread('data.csv')
+```
+
+
+# 문제 1  
+## str으로 데이터의 구성을 살펴보고 각 열마다 NA 개수와 unique 값 및 개수를 확인해 보세요.
+```{r}
+#str로 데이터 구성 확인
+data %>% str()
+
+#각 열마다 NA 갯수 세기
+data %>% is.na() %>% colSums()
+
+#각 열마다 unique 값 세기
+n_distinct(data) 
+```
+
+
+# 문제 2-1  
+## NA가 있는 행을 삭제하세요.
+```{r}
+data<-na.omit(data) 
+```
+
+
+# 문제 2-2
+## 빈 문자열 이 있 는 행을 삭제하고 각 열마다 NA 개수와 unique 값 및 개수를 다시 확인해 보세요.
+```{r}
+#빈 문자열이 있는 행 삭제
+data<-data[!(data$patient_id== ''),]
+data<-data[!(data$sex== ''),]
+data<-data[!(data$age== ''),]
+data<-data[!(data$country== ''),]
+data<-data[!(data$province== ''),]
+data<-data[!(data$city== ''),]
+data<-data[!(data$state== ''),]
+
+#각 열마다 NA 갯수 세기
+data %>% is.na() %>% colSums() 
+
+#각 열마다 unique 값 세기
+n_distinct(data) 
+
+```
+
+# 문제 3
+## country가 ‘Korea'인 행만 남긴 다음 country 열을 제거하세요.
+```{r}
+#country가 Korea인 행만 남기기
+data<-data[(data$country == 'Korea'),]
+
+#country 열 삭제
+data<-data[,-4]
+```
+
+
+# 문제4
+## province 변수 내 값을 다음과 같이 바꾸세요.
+```{r}
+data$province<-
+  data$province %>% revalue(c('서울'='서울특별시','부산'='부산광역시','대구'='대구광역시',
+                          '인천'='인천광역시', '대전'='대전광역시','세종'='세종특별자치시',
+                          '울산'='울산광역시','제주도'='제주특별자치도'))
+```
+
+
+# 문제5
+## confirmed_date를 날짜 자료형으로 바꾸세요.
+```{r}
+data$confirmed_date <-
+data$confirmed_date %>% as.Date(data$confirmed_date)
+```
+
+
+# 문제6
+## 확진날짜 별 확진자 수에 대한 파생변수를 만드세요.
+```{r}
+data<-
+  data %>% group_by(confirmed_date) %>% mutate(confirmed_number=n()) 
+```
+
+
+# 문제7
+## 확진날짜의 주말 여부에 대한 파생변수를 만드세요.
+```{r}
+data<- data %>% 
+     mutate(wday=ifelse(wday(confirmed_date)==1,'주말','주중'))
+data<- data %>% 
+     mutate(wday=ifelse(wday(confirmed_date)==7,'주말','주중'))
+
+```
+
+
+# 문제8
+## 나이대별 일별 확진자 수에 대한 summary를 확인해보세요.
+```{r}
+#나이대 별 일별 확진자 수에 대한 분포
+a<- data %>% group_by(age,confirmed_date) %>% summarise(n=n())
+tapply(a$n,a$age,summary) 
+```
+
+
+# **Chapter2**
+
+# 문제1
+```{r}
+ggplot(data,aes(confirmed_date,confirmed_number))+geom_line(color='lightblue')+ggtitle('코로나 확진자 수 추이 -국내인 기준')+theme_classic()+theme(plot.title=element_text(size=16,hjust=0.5,face='bold'))+geom_point(mapping=aes(x=confirmed_date[which.max(confirmed_number)],y=max(confirmed_number)),color='navy')+coord_cartesian(ylim=c(0,150))+annotate('text',x=as.Date('2020-02-13') ,y=143 ,label='2020년 3월 5일 (143명)',size=3.2,color='navy',fontface=2)
+
+#최대 확진자 수 좌표 구하기
+#which.max(confirmed_number)
+#max(confirmed_number)
+```
+
+# 문제1-2
+## province별 혹진자 수 추이 그래프를 그리세요.
+```{r}
+data %>%   
+  ggplot(aes(x = data$confirmed_date, y = data$confirmed_number, group=province, color=province)) + 
+  geom_line()+facet_wrap(~province, ncol=7)+
+theme(panel.background = element_rect(color='black', linetype='solid'),
+        axis.title.x=element_text(face="bold", size=10), 
+        axis.title.y=element_text(face="bold", size=10),
+        plot.title=element_text(face="bold", size=10),
+        axis.text.x = element_text(size=7, face="bold", colour = "grey50"),
+        axis.text.y = element_text(size=7, face="bold", colour = "grey50"),
+        legend.title=element_text(face="bold", size=10),
+        legend.text = element_text(face="bold", size=10),
+        strip.background = element_rect(fill="white", color="black"),
+        strip.text = element_text(face="bold"))+
+  labs(x="confirmed_date", y="confirmed_number", color="province")
+
+```
+
+# 문제2
+## 지역별 확진자 수를 state(확진자 상황) 그룹 별로 나누어 그래프를 그리세요.
+```{r}
+data %>% 
+  ggplot(aes(factor(province)),group=province,color=state)+geom_bar(aes(fill=state,color=state),alpha=0.5)+labs(x='지역',y='확진자 수')+coord_flip()
+
+```
+
+# 문제3
+## 나이대별 일별 확진자 수 box plot을 그리세요.
+```{r}
+a %>% ggplot(aes(x=age,y=n),group=age,color=age)+geom_boxplot(aes(fill=age),alpha=0.5,outlier.shape = NA)+labs(x='age',y='일단위 확진자 수')+theme_classic()+stat_boxplot(geom='errorbar',aes(color=age))
+```
+
+
+# 문제3-2
+## 나이대별 일별 확진자 수에 대한 일원분산분석을 실시하여 해석해보세요.
+```{r}
+one<-aov(n~age,a)
+summary(one)
+```
+### p-value가 0.05보다 작으므로 귀무가설을 기각하고, 나이별과 일별 확진자가 서로 dependent한 관계에 있음을 알 수 있다. 
+
+
+
+# **Chapter3**
+
+# 문제1
+## 아래처럼 상관계수 플랏을 만들고 간단히 해석해보세요.
+```{r}
+library(MASS)
+library(corrplot)
+library(caret)
+library(MLmetrics)
+
+Boston_cor<-cor(Boston)
+corrplot(Boston_cor, method="number",type='upper')
+```
+
+### 예를 들어 crim과 zn의 상관계수를 보면, -0.2로 음의 상관계수를 나타내고 있다. 이는 crim에서 한 단위의 수가 증가하면, zn에서 0.2만큼 감소함을 의미한다. -1과 +1에 가까울 수록 강한 결합을 갖는데, -0.2는 그리 강한 결합을 가지고 있지 않음을 알 수 있다. 
+
+
+# 문제2
+## 아래와 같이 종속변수로 사용할 medv와 이외 변수 간의 관계 파악을 위한 scatter plot 및 회귀 추세선을 그려보세요.
+```{r}
+b<-
+  Boston %>% gather(var,ab,-medv)
+
+b %>% ggplot(aes(x = ab, y = medv)) + 
+  geom_point() + 
+  facet_wrap(~var,scales='free')+labs(x='var',y='medv')+theme_light()+stat_smooth(method=lm,color='lightblue')
+
+```
+
+
+# 문제3
+## 데이터를 train/test데이터를 7:3으로 나누세요.
+```{r}
+index <- createDataPartition(Boston$medv,1,0.7,list=FALSE)
+train<-Boston[index,]
+test<-Boston[-index,]
+```
+
+
+# 문제3-2
+## train 데이터로 회귀 모형 만든 후 간단히 결과를 해석한 후, test에 대한 RSME를 구하세요.
+```{r}
+model_lm<- lm(medv~.,train)
+
+pred <- predict(model_lm,test)
+RMSE(test$medv,pred)
+```
+
+
+# 문제3-3
+### RMSE를 낯출 수 있는 방법에 대해 간략히 설명해주세요.
+### RMSE는 outlier와 연관이 있으므로, 이에 유의해서 outlier를 제거함으로써 예측 모델을 회귀 모델에 가깝게 만든다. 또는 data의 skewness를 줄이는 방법도 있다. 
+
+
+
+# 문제4
+## 적합한 회귀모형의 계수에 대해 아래와 같이 시각화해주세요.
+```{r}
+c<-data.frame(var = names(model_lm$coefficients), value = model_lm$coefficients) 
+c$value<-as.numeric(sprintf('%.2f',model_lm$coefficients))
+c %>% ggplot(aes(x=value,y=reorder(var,value),color=value,fill=value))+geom_bar(aes(color=value,fill=value),stat='identity',alpha=0.2)+labs(y='intercept and variables')+scale_fill_gradient2(high='red',mid='yellow',low='blue',guide='legend')+scale_color_gradient2(high='red',mid='yellow',low='blue',guide='legend')+theme_classic()+geom_text(aes(label=value), position = position_stack(vjust=0.5), colour='black')+theme(legend.position='none')
+```

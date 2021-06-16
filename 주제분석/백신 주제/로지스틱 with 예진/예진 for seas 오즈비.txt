@@ -1,0 +1,126 @@
+(Intercept)                          h1n1_concern 1 
+                              0.7780052                               1.0063366 
+                         h1n1_concern 2                          h1n1_concern 3 
+                              1.0227859                               1.0154525 
+               h1n1_concernNon Response                        h1n1_knowledge 1 
+                              1.0064637                               1.0236149 
+                       h1n1_knowledge 2              h1n1_knowledgeNon Response 
+                              1.0529490                               1.0593314 
+            behavioral_antiviral_meds 1   behavioral_antiviral_medsNon Response 
+                              1.0174783                               1.0792351 
+                behavioral_touch_face 1       behavioral_touch_faceNon Response 
+                              1.0341978                               1.0516384 
+                     doctor_recc_h1n1 1            doctor_recc_h1n1Non Response 
+                              0.9436450                               0.9730509 
+                 doctor_recc_seasonal 1        doctor_recc_seasonalNon Response 
+                              1.2807539                                      NA 
+                chronic_med_condition 1       chronic_med_conditionNon Response 
+                              1.0396964                               0.9788756 
+                 child_under_6_months 1        child_under_6_monthsNon Response 
+                              1.0235580                               1.0277712 
+                        health_worker 1               health_workerNon Response 
+                              1.1051284                               1.0144126 
+                     health_insurance 1            health_insuranceNon Response 
+                              1.0915022                               1.0156143 
+          opinion_h1n1_vacc_effective 2           opinion_h1n1_vacc_effective 3 
+                              0.9842418                               1.0209404 
+          opinion_h1n1_vacc_effective 4           opinion_h1n1_vacc_effective 5 
+                              1.0057576                               0.9992116 
+opinion_h1n1_vacc_effectiveNon Response                     opinion_h1n1_risk 2 
+                              1.0505774                               1.0220002 
+                    opinion_h1n1_risk 3                     opinion_h1n1_risk 4 
+                              1.0564873                               1.0365448 
+                    opinion_h1n1_risk 5           opinion_h1n1_riskNon Response 
+                              0.9966579                               0.9730455 
+          opinion_h1n1_sick_from_vacc 2           opinion_h1n1_sick_from_vacc 3 
+                              1.0147345                               0.9939323 
+          opinion_h1n1_sick_from_vacc 4           opinion_h1n1_sick_from_vacc 5 
+                              0.9904412                               0.9734213 
+opinion_h1n1_sick_from_vaccNon Response           opinion_seas_vacc_effective 2 
+                              0.9969395                               0.9555956 
+          opinion_seas_vacc_effective 3           opinion_seas_vacc_effective 4 
+                              1.0284204                               1.0755707 
+          opinion_seas_vacc_effective 5 opinion_seas_vacc_effectiveNon Response 
+                              1.2915221                               1.1537488 
+                    opinion_seas_risk 2                     opinion_seas_risk 3 
+                              1.1150582                               1.2497317 
+                    opinion_seas_risk 4                     opinion_seas_risk 5 
+                              1.3242001                               1.4163654 
+          opinion_seas_riskNon Response           opinion_seas_sick_from_vacc 2 
+                              1.2733268                               0.9362981 
+          opinion_seas_sick_from_vacc 3           opinion_seas_sick_from_vacc 4 
+                              0.7499536                               0.9210343 
+          opinion_seas_sick_from_vacc 5 opinion_seas_sick_from_vaccNon Response 
+                              0.8694568                               0.8290547 
+                              age_group                              education1 
+                              1.0608180                               1.0226533 
+                             education2                              education3 
+                              1.0304905                               1.0598921 
+                  educationNon Response                            raceHispanic 
+                              1.0422100                               1.0381403 
+                  raceOther or Multiple                               raceWhite 
+                              1.0751752                               1.0578597 
+                        income_poverty1                         income_poverty2 
+                              1.0133311                               1.0298632 
+             income_povertyNon Response                          rent_or_ownOwn 
+                              1.0301866                               0.9872090 
+                        rent_or_ownRent           employment_statusNon Response 
+                              0.9661275                               1.0731886 
+    employment_statusNot in Labor Force             employment_statusUnemployed 
+                              1.0574195                               0.9993179 
+                 hhs_geo_regionRegion10                   hhs_geo_regionRegion2 
+                              0.9919632                               0.9718553 
+                  hhs_geo_regionRegion3                   hhs_geo_regionRegion4 
+                              0.9778015                               0.9575733 
+                  hhs_geo_regionRegion5                   hhs_geo_regionRegion6 
+                              1.0004583                               0.9696326 
+                  hhs_geo_regionRegion7                   hhs_geo_regionRegion8 
+                              0.9839124                               0.9676803 
+                  hhs_geo_regionRegion9           census_msaMSA, Principle City 
+                              0.9468147                               1.0005435 
+                      census_msaNon-MSA                    employment_industryB 
+                              0.9808679                               0.9234671 
+                   employment_industryC                    employment_industryD 
+                              0.9816970                               0.9175661 
+                   employment_industryE                    employment_industryF 
+                              0.9967184                               0.9675976 
+                   employment_industryG                    employment_industryH 
+                              1.0088745                               0.9489872 
+                   employment_industryI                    employment_industryJ 
+                              1.0424198                               0.9451405 
+                   employment_industryK                    employment_industryL 
+                              1.0342672                               1.0072742 
+                   employment_industryM                    employment_industryN 
+                              0.9717854                               1.1138090 
+        employment_industryNon Response                    employment_industryO 
+                              0.9451391                               1.0231658 
+                   employment_industryP                    employment_industryQ 
+                              0.9956268                               1.0358445 
+                   employment_industryR                    employment_industryS 
+                              0.9803539                               0.9695567 
+                   employment_industryT                    employment_industryU 
+                              1.7181132                               0.9708043 
+                 employment_occupationb                  employment_occupationc 
+                              1.0366120                               1.0429961 
+                 employment_occupationd                  employment_occupatione 
+                              1.0871653                               1.0280393 
+                 employment_occupationf                  employment_occupationg 
+                              1.0411271                               0.9826638 
+                 employment_occupationh                  employment_occupationi 
+                              1.0618851                               1.0501890 
+                 employment_occupationj                  employment_occupationk 
+                              1.0549950                               0.9931841 
+                 employment_occupationl                  employment_occupationm 
+                              1.0009758                               1.0725970 
+                 employment_occupationn       employment_occupationNon Response 
+                              1.0789836                               1.0713263 
+                 employment_occupationo                  employment_occupationp 
+                              1.0913807                               1.0822278 
+                 employment_occupationq                  employment_occupationr 
+                              1.0233443                               1.0660492 
+                 employment_occupations                  employment_occupationt 
+                              1.0744509                               1.0612639 
+                 employment_occupationu                  employment_occupationv 
+                              0.9955194                               1.0683862 
+                 employment_occupationw 
+                                     NA 

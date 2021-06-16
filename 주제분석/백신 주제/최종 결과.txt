@@ -1,0 +1,38 @@
+require_dense =[bool, bool] optional  (bool: True or False)
+order = [1,0]
+로 튜닝을 해보았지만, 성능이 같거나 기본값보다 오히려 낮게 나와 기본값으로 튜닝하기로 결정!
+
+최종 결과
+[chain]
+mice	Accuracy =  0.6827031074503931
+	Hamming loss =  0.1922500935979034
+	zero_one_loss =  0.3172968925496069
+	0.8275
+
+knn	Accuracy =  0.72163983526769
+	Hamming loss =  0.16473230999625607
+	zero_one_loss =  0.27836016473230996
+	0.8473
+
+hotdeck	Accuracy =  0.6832646948708349
+	Hamming loss =  0.19028453762635716
+	zero_one_loss =  0.31673530512916515
+	0.5269
+
+nafactor    Accuracy =  0.6967427929614377
+	Hamming loss =  0.180456757768626
+	zero_one_loss =  0.3032572070385623
+	0.8569
+
+
+[labelpowerset]
+nafactor	0.8287
+
+knn	0.8476
+
+hotdeck	0.6141
+
+mice	0.8588
+
+[binary relevance]
+nafactor 0.8623

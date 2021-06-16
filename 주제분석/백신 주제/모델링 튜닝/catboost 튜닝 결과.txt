@@ -1,0 +1,43 @@
+(아저씨)        (현재)   
+  train        =    x
+  test         =   nafacotr_test
+  labels      =    y
+  X_train   = train_x
+  y_train   =  train_y
+
+Number of finished trials: 100
+Best trial:
+  Value: 0.869164598677998
+  Params: 
+    iterations=1500,
+    learning_rate=0.016831298709023414,
+    random_strength=5,
+    bagging_temperature=10,
+    max_bin=8,
+    grow_policy=SymmetricTree,
+    min_data_in_leaf=1,
+    max_depth=5,
+    l2_leaf_reg=88.82916512000496,
+    one_hot_max_size=10,
+    auto_class_weights=Balanced,
+
+Number of finished trials: 100
+Best trial:
+  Value: 0.8638540964000672
+  Params: 
+    iterations=1200,
+    learning_rate=0.012133095913870618,
+    random_strength=2,
+    bagging_temperature=10,
+    max_bin=8,
+    grow_policy=Depthwise,
+    min_data_in_leaf=10,
+    max_depth=9,
+    l2_leaf_reg=98.60792390256522,
+    one_hot_max_size=12,
+    auto_class_weights=SqrtBalanced,
+
+
+
+
+

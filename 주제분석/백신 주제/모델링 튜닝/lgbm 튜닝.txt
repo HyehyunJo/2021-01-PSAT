@@ -1,0 +1,37 @@
+cv=KFold(n_splits=3)
+
+for o in num:
+    
+    #for o in num:
+        ac=[]
+        hm=[]
+        ro=[]
+        for t,v in cv.split(final_x_train):
+            train_xcv=final_x_train[t]
+            val_xcv = final_x_train[v]
+    
+            train_ycv =final_y_train[t]
+            val_ycv = final_y_train[v]
+            param ={'learning_rate':0.01,'force_col_wise':True, 'n_estimators':720,
+                   'num_leaves':o}
+            classifier = LabelPowerset(lgbm.LGBMClassifier(**param))
+
+            classifier.fit(train_xcv, train_ycv)
+
+            predictions = classifier.predict(val_xcv)
+           
+            ac.append(accuracy_score(val_ycv,predictions))
+            hm.append(hamming_loss(val_ycv,predictions))
+            ro.append(roc_auc_score(val_ycv,predictions.toarray()))
+        print(r,'&',o, ':',np.mean(ac),'\t',np.mean(hm),'\t',np.mean(ro))
+
+# final 튜닝
+n=[650,680,700,720,740] #[100,300,500,700,1000] #[700,800,900,1000,1100]
+rate=[0.01] #[0.0001,0.001,0.01,0.1,0.5] #[0.009,0.01,0.02,0.03,0.04,0.05] 
+dep=[5,10,15,20,25,30]
+num=[10,20,30,40,50]              #[38,39,40,41,42]
+reg=[10,30,50,70] #[87,88,89,90,91,92,93]                 #[21,22,23,24,25]
+col=[0.7,0.8,0.9,1]
+bag=[0.0001,0.001,0.01,0.1] #무의미
+ac=[]
+hm=[]

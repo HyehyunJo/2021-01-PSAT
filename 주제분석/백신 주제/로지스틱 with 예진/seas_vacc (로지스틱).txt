@@ -1,0 +1,202 @@
+Call:
+glm(formula = seasonal_vaccine ~ h1n1_concern + h1n1_knowledge + 
+    behavioral_antiviral_meds + behavioral_touch_face + doctor_recc_h1n1 + 
+    doctor_recc_seasonal + chronic_med_condition + child_under_6_months + 
+    health_worker + health_insurance + opinion_h1n1_vacc_effective + 
+    opinion_h1n1_risk + opinion_h1n1_sick_from_vacc + opinion_seas_vacc_effective + 
+    opinion_seas_risk + opinion_seas_sick_from_vacc + age_group + 
+    education + race + income_poverty + rent_or_own + employment_status + 
+    hhs_geo_region + census_msa + employment_industry + employment_occupation, 
+    data = nafactor_train_seas)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-1.22458  -0.29021  -0.03514   0.29902   1.30769  
+
+Coefficients: (2 not defined because of singularities)
+                                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                             -0.2510221  0.0314356  -7.985 1.46e-15 ***
+h1n1_concern 1                           0.0063166  0.0086467   0.731 0.465077    
+h1n1_concern 2                           0.0225301  0.0089392   2.520 0.011729 *  
+h1n1_concern 3                           0.0153343  0.0104769   1.464 0.143309    
+h1n1_concernNon Response                 0.0064429  0.0426424   0.151 0.879905    
+h1n1_knowledge 1                         0.0233404  0.0091555   2.549 0.010799 *  
+h1n1_knowledge 2                         0.0515948  0.0098738   5.225 1.75e-07 ***
+h1n1_knowledgeNon Response               0.0576379  0.0378177   1.524 0.127496    
+behavioral_antiviral_meds 1              0.0173273  0.0115400   1.502 0.133237    
+behavioral_antiviral_medsNon Response    0.0762526  0.0473194   1.611 0.107095    
+behavioral_touch_face 1                  0.0336260  0.0054659   6.152 7.76e-10 ***
+behavioral_touch_faceNon Response        0.0503493  0.0354585   1.420 0.155633    
+doctor_recc_h1n1 1                      -0.0580053  0.0078606  -7.379 1.64e-13 ***
+doctor_recc_h1n1Non Response            -0.0273189  0.0094050  -2.905 0.003679 ** 
+doctor_recc_seasonal 1                   0.2474489  0.0069630  35.537  < 2e-16 ***
+doctor_recc_seasonalNon Response                NA         NA      NA       NA    
+chronic_med_condition 1                  0.0389287  0.0058246   6.683 2.38e-11 ***
+chronic_med_conditionNon Response       -0.0213507  0.0230947  -0.924 0.355243    
+child_under_6_months 1                   0.0232848  0.0091089   2.556 0.010585 *  
+child_under_6_monthsNon Response         0.0273925  0.0598377   0.458 0.647114    
+health_worker 1                          0.0999615  0.0115042   8.689  < 2e-16 ***
+health_workerNon Response                0.0143097  0.0605469   0.236 0.813170    
+health_insurance 1                       0.0875549  0.0107599   8.137 4.22e-16 ***
+health_insuranceNon Response             0.0154936  0.0108063   1.434 0.151653    
+opinion_h1n1_vacc_effective 2           -0.0158837  0.0170955  -0.929 0.352838    
+opinion_h1n1_vacc_effective 3            0.0207242  0.0160854   1.288 0.197623    
+opinion_h1n1_vacc_effective 4            0.0057411  0.0155367   0.370 0.711745    
+opinion_h1n1_vacc_effective 5           -0.0007888  0.0160794  -0.049 0.960877    
+opinion_h1n1_vacc_effectiveNon Response  0.0493399  0.0360453   1.369 0.171064    
+opinion_h1n1_risk 2                      0.0217617  0.0068368   3.183 0.001459 ** 
+opinion_h1n1_risk 3                      0.0549496  0.0145703   3.771 0.000163 ***
+opinion_h1n1_risk 4                      0.0358929  0.0087475   4.103 4.09e-05 ***
+opinion_h1n1_risk 5                     -0.0033477  0.0126082  -0.266 0.790611    
+opinion_h1n1_riskNon Response           -0.0273244  0.0457140  -0.598 0.550028    
+opinion_h1n1_sick_from_vacc 2            0.0146270  0.0067461   2.168 0.030150 *  
+opinion_h1n1_sick_from_vacc 3           -0.0060862  0.0341425  -0.178 0.858522    
+opinion_h1n1_sick_from_vacc 4           -0.0096048  0.0078757  -1.220 0.222648    
+opinion_h1n1_sick_from_vacc 5           -0.0269383  0.0113601  -2.371 0.017732 *  
+opinion_h1n1_sick_from_vaccNon Response -0.0030652  0.0538614  -0.057 0.954618    
+opinion_seas_vacc_effective 2           -0.0454204  0.0150705  -3.014 0.002582 ** 
+opinion_seas_vacc_effective 3            0.0280240  0.0177299   1.581 0.113981    
+opinion_seas_vacc_effective 4            0.0728514  0.0135295   5.385 7.32e-08 ***
+opinion_seas_vacc_effective 5            0.2558214  0.0139595  18.326  < 2e-16 ***
+opinion_seas_vacc_effectiveNon Response  0.1430165  0.0484214   2.954 0.003144 ** 
+opinion_seas_risk 2                      0.1089066  0.0075040  14.513  < 2e-16 ***
+opinion_seas_risk 3                      0.2229289  0.0183059  12.178  < 2e-16 ***
+opinion_seas_risk 4                      0.2808086  0.0084669  33.166  < 2e-16 ***
+opinion_seas_risk 5                      0.3480940  0.0110182  31.593  < 2e-16 ***
+opinion_seas_riskNon Response            0.2416330  0.0508307   4.754 2.01e-06 ***
+opinion_seas_sick_from_vacc 2           -0.0658213  0.0065209 -10.094  < 2e-16 ***
+opinion_seas_sick_from_vacc 3           -0.2877440  0.0425910  -6.756 1.45e-11 ***
+opinion_seas_sick_from_vacc 4           -0.0822580  0.0076222 -10.792  < 2e-16 ***
+opinion_seas_sick_from_vacc 5           -0.1398866  0.0117540 -11.901  < 2e-16 ***
+opinion_seas_sick_from_vaccNon Response -0.1874692  0.0496399  -3.777 0.000159 ***
+age_group                                0.0590403  0.0020331  29.040  < 2e-16 ***
+education1                               0.0224005  0.0099852   2.243 0.024881 *  
+education2                               0.0300350  0.0101017   2.973 0.002949 ** 
+education3                               0.0581671  0.0104660   5.558 2.76e-08 ***
+educationNon Response                    0.0413434  0.0246701   1.676 0.093779 .  
+raceHispanic                             0.0374309  0.0132943   2.816 0.004873 ** 
+raceOther or Multiple                    0.0724836  0.0134703   5.381 7.47e-08 ***
+raceWhite                                0.0562477  0.0096872   5.806 6.46e-09 ***
+income_poverty1                          0.0132430  0.0092387   1.433 0.151749    
+income_poverty2                          0.0294260  0.0107544   2.736 0.006220 ** 
+income_povertyNon Response               0.0297400  0.0112507   2.643 0.008213 ** 
+rent_or_ownOwn                          -0.0128736  0.0156033  -0.825 0.409350    
+rent_or_ownRent                         -0.0344594  0.0162169  -2.125 0.033604 *  
+employment_statusNon Response            0.0706342  0.0391204   1.806 0.070999 .  
+employment_statusNot in Labor Force      0.0558315  0.0330974   1.687 0.091637 .  
+employment_statusUnemployed             -0.0006823  0.0344255  -0.020 0.984188    
+hhs_geo_regionRegion10                  -0.0080693  0.0106395  -0.758 0.448200    
+hhs_geo_regionRegion2                   -0.0285483  0.0106350  -2.684 0.007271 ** 
+hhs_geo_regionRegion3                   -0.0224486  0.0104068  -2.157 0.031006 *  
+hhs_geo_regionRegion4                   -0.0433530  0.0114858  -3.774 0.000161 ***
+hhs_geo_regionRegion5                    0.0004582  0.0115096   0.040 0.968247    
+hhs_geo_regionRegion6                   -0.0308380  0.0097943  -3.149 0.001643 ** 
+hhs_geo_regionRegion7                   -0.0162184  0.0104264  -1.556 0.119837    
+hhs_geo_regionRegion8                   -0.0328535  0.0114984  -2.857 0.004277 ** 
+hhs_geo_regionRegion9                   -0.0546518  0.0142591  -3.833 0.000127 ***
+census_msaMSA, Principle City            0.0005433  0.0059563   0.091 0.927321    
+census_msaNon-MSA                       -0.0193175  0.0062072  -3.112 0.001859 ** 
+employment_industryB                    -0.0796201  0.0279691  -2.847 0.004421 ** 
+employment_industryC                    -0.0184726  0.0218002  -0.847 0.396804    
+employment_industryD                    -0.0860307  0.0276967  -3.106 0.001897 ** 
+employment_industryE                    -0.0032870  0.0245804  -0.134 0.893621    
+employment_industryF                    -0.0329390  0.0204965  -1.607 0.108054    
+employment_industryG                     0.0088354  0.0299419   0.295 0.767932    
+employment_industryH                    -0.0523599  0.0326125  -1.606 0.108392    
+employment_industryI                     0.0415448  0.0201124   2.066 0.038873 *  
+employment_industryJ                    -0.0564217  0.0243356  -2.318 0.020431 *  
+employment_industryK                     0.0336932  0.0216159   1.559 0.119074    
+employment_industryL                     0.0072479  0.0214583   0.338 0.735542    
+employment_industryM                    -0.0286202  0.0247846  -1.155 0.248199    
+employment_industryN                     0.1077857  0.0391029   2.756 0.005847 ** 
+employment_industryNon Response         -0.0564232  0.0342614  -1.647 0.099602 .  
+employment_industryO                     0.0229015  0.0459189   0.499 0.617968    
+employment_industryP                    -0.0043828  0.0307551  -0.143 0.886682    
+employment_industryQ                     0.0352171  0.0219813   1.602 0.109137    
+employment_industryR                    -0.0198416  0.0273101  -0.727 0.467521    
+employment_industryS                    -0.0309163  0.0296687  -1.042 0.297397    
+employment_industryT                     0.5412267  0.0355456  15.226  < 2e-16 ***
+employment_industryU                    -0.0296304  0.1108415  -0.267 0.789223    
+employment_occupationb                   0.0359577  0.0183230   1.962 0.049723 *  
+employment_occupationc                   0.0420974  0.0240252   1.752 0.079748 .  
+employment_occupationd                   0.0835737  0.0276940   3.018 0.002549 ** 
+employment_occupatione                   0.0276534  0.0257832   1.073 0.283488    
+employment_occupationf                   0.0403039  0.0276153   1.459 0.144446    
+employment_occupationg                  -0.0174882  0.0285359  -0.613 0.539981    
+employment_occupationh                   0.0600457  0.0249054   2.411 0.015918 *  
+employment_occupationi                   0.0489701  0.0182761   2.679 0.007379 ** 
+employment_occupationj                   0.0535360  0.0213536   2.507 0.012178 *  
+employment_occupationk                  -0.0068392  0.0281395  -0.243 0.807971    
+employment_occupationl                   0.0009753  0.0273051   0.036 0.971508    
+employment_occupationm                   0.0700828  0.0302331   2.318 0.020452 *  
+employment_occupationn                   0.0760195  0.0221386   3.434 0.000596 ***
+employment_occupationNon Response        0.0688974  0.0278968   2.470 0.013528 *  
+employment_occupationo                   0.0874436  0.0324915   2.691 0.007122 ** 
+employment_occupationp                   0.0790217  0.0311881   2.534 0.011292 *  
+employment_occupationq                   0.0230760  0.0280225   0.823 0.410242    
+employment_occupationr                   0.0639595  0.0294174   2.174 0.029699 *  
+employment_occupations                   0.0718097  0.0313481   2.291 0.021987 *  
+employment_occupationt                   0.0594606  0.0323627   1.837 0.066174 .  
+employment_occupationu                  -0.0044907  0.0257985  -0.174 0.861814    
+employment_occupationv                   0.0661493  0.0506533   1.306 0.191590    
+employment_occupationw                          NA         NA      NA       NA    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 0.1559524)
+
+    Null deviance: 6645.2  on 26706  degrees of freedom
+Residual deviance: 4145.8  on 26584  degrees of freedom
+AIC: 26289
+
+Number of Fisher Scoring iterations: 2
+
+---------------------------------------------------------------------------------------
+
+Step:  AIC=26288.83
+seasonal_vaccine ~ h1n1_concern + h1n1_knowledge + behavioral_antiviral_meds + 
+    behavioral_touch_face + doctor_recc_h1n1 + doctor_recc_seasonal + 
+    chronic_med_condition + child_under_6_months + health_worker + 
+    health_insurance + opinion_h1n1_vacc_effective + opinion_h1n1_risk + 
+    opinion_h1n1_sick_from_vacc + opinion_seas_vacc_effective + 
+    opinion_seas_risk + opinion_seas_sick_from_vacc + age_group + 
+    education + race + income_poverty + rent_or_own + employment_status + 
+    hhs_geo_region + census_msa + employment_industry + employment_occupation
+
+                              Df Deviance   AIC
+<none>                             4145.8 26289
+- behavioral_antiviral_meds    2   4146.6 26290
++ behavioral_avoidance         2   4145.4 26290
++ household_children           4   4144.8 26290
+- h1n1_concern                 4   4147.3 26290
++ sex                          1   4145.8 26290
++ household_adults             4   4144.9 26291
++ behavioral_large_gatherings  2   4145.5 26291
++ behavioral_wash_hands        2   4145.5 26291
++ behavioral_face_mask         2   4145.6 26291
+- child_under_6_months         2   4146.9 26292
++ marital_status               2   4145.7 26292
++ behavioral_outside_home      2   4145.7 26292
+- employment_occupation       22   4153.2 26292
+- opinion_h1n1_vacc_effective  5   4148.0 26293
+- income_poverty               3   4147.8 26295
+- census_msa                   2   4147.6 26296
+- rent_or_own                  2   4147.7 26297
+- opinion_h1n1_sick_from_vacc  5   4148.9 26299
+- hhs_geo_region               9   4151.5 26307
+- employment_status            3   4150.1 26310
+- opinion_h1n1_risk            5   4151.2 26313
+- education                    4   4152.1 26321
+- h1n1_knowledge               3   4151.9 26322
+- race                         3   4152.1 26323
+- behavioral_touch_face        2   4151.8 26324
+- chronic_med_condition        2   4153.1 26332
+- employment_industry         20   4158.9 26333
+- doctor_recc_h1n1             1   4154.3 26342
+- health_worker                2   4157.6 26361
+- health_insurance             2   4177.8 26490
+- opinion_seas_sick_from_vacc  5   4187.3 26544
+- age_group                    1   4277.4 27121
+- doctor_recc_seasonal         1   4342.8 27526
+- opinion_seas_vacc_effective  5   4351.6 27573
+- opinion_seas_risk            5   4378.1 27735

@@ -1,0 +1,283 @@
+---
+title: '클린업 2주차 패키지'
+author: '조혜현'
+date: '3/15/2021'
+output: html_document
+---
+
+## 문제 0
+### 기본 세팅
+```{r}
+library(tidyverse)
+library(data.table)
+library(VIM)
+
+setwd('C:/Users/iyuo1/OneDrive/Documents/P-SAT/2주차패키지')
+data <- fread('data.csv')
+```
+
+
+## 문제1
+### '2'로 끝나는 변수를 모두 제거하세요.
+```{r}
+data <- data %>% select(-ends_with('2')) 
+```
+
+## 문제2
+### VIM 패키지를 이용하여 다음과 같이 시각화 한 후 간단히 해석해 보세요.
+```{r}
+data %>% aggr(col=c('lightyellow','pink'),prop=FALSE,numbers=TRUE)
+```
+
+왼쪽 그래프는 각 변수에 있는 결측치의 종류와 수를 나타내고, 오른쪽 그래프는 결측치 값이 어느 변수의 조합으로 이루어져 있는 지를 보여준다. 
+debt1와 employee1의 조합으로 결측치를 가지고 있는 데이터는 7개이다.
+
+
+## 문제3-1
+### 숫자 데이터의 NA 값을 mean imputation을 통해 채우세요.
+```{r}
+NAmean <- function(x) replace(x, is.na(x), mean(x, na.rm = TRUE))
+data<-replace(data, TRUE, lapply(data, NAmean))
+
+```
+
+
+## 문제 3-2
+### 범주 데이터의 NA값을 mode imputation을 통해 채우세요.
+```{r}
+my_mode <- function(x) {                                     
+  unique_x <- unique(x)
+  mode <- unique_x[which.max(tabulate(match(x, unique_x)))]
+  mode
+}
+
+data[is.na(data)] <- my_mode(data$ownerChange)  
+sum(is.na(data))
+```
+
+
+## 문제 4
+### 'open'을 1, 'close'를 0으로 바꾸세요.
+```{r}
+data$OC <- ifelse(data$OC %in% c('open'),1,0) 
+```
+
+
+## 문제 5
+### 숫자 데이터 중 integer 자료형인 경우 num(numeric) 자료형으로 바꾸세요.
+```{r}
+sapply(data,class)
+data[]<-lapply(data,function(x){
+  if(bit64::is.integer64(x)){
+    as.numeric(x)}
+  else x})
+sapply(data,class)
+
+```
+
+
+## Chapter2
+### [모델1 로지스틱 회귀]
+
+```{r}
+library(caret)
+library(MLmetrics)
+library(randomForest)
+```
+
+## 문제 1
+### 앞서 전처리한 데이터를 createDataPartition으로 7:3으로 나누세요.
+```{r}
+set.seed(1234)
+
+train_index <- createDataPartition(data$OC,p=0.3,list=FALSE)
+train_data <-data[-train_index,]
+val <- data[train_index,]
+```
+
+
+## 문제 2
+### 'OC'를 타겟으로 하는 로지스틱 회귀 생성 후 validation set의 Accuracy값을 구하세요.
+```{r}
+data$OC <- data$OC %>% as.numeric()
+train_data$OC <- train_data$OC %>% as.numeric()
+val$OC <- val$OC %>% as.numeric()
+
+model_glm <- glm(OC~., data= train_data, family='binomial')
+
+glm_data <- predict(model_glm, newdata = val, type = 'response')
+glm_pred <- ifelse(glm_data < 0.5, 0, 1)
+
+#Accuracy
+sum(glm_pred) / length(glm_pred)
+```
+## 문제 3
+### 단계적 선택법을 이용하여 변수를 선택하고, 선택된 변수들로 로지스틱 회귀를 만들어 validation set의 Accuracy 값을 구하세요.
+```{r}
+varsel <- step(model_glm, direction='both')
+
+model_glm2 <- glm(OC~revenue1+salescost1+noi1+interest1+quickAsset1+
+                    receivableS1+nonCAsset1+tanAsset1+receivableL1+ownerChange, train_data, family='binomial')
+
+glm2_data <- predict(model_glm2, newdata = val, type = 'response')
+glm2_pred <- ifelse(glm_data < 0.5, 0, 1)
+
+#Accuracy
+sum(glm2_pred) / length(glm2_pred)
+```
+
+# [모델2 랜덤포레스트]
+
+## 문제 4
+### mtry에 대한 그리드 서치를 위해 acc_rf 데이터 프레임을 만드세요.
+```{r}
+acc_rf <- expand.grid(mtry=c(3,4,5),acc=c(NA))
+
+```
+
+## 문제 5
+### 로지스틱 회귀에서 선택된 변수들로 랜덤포레스트에 대한 5-fold CV 그리드 서치를 진행하여 acc_rf의 acc 변수에 해당 Accuracy 값을 넣으세요.
+```{r}
+set.seed(1234)
+
+cv_index <- createFolds(data$OC, k = 5, list = T)
+mtry_grid <- 3:5
+
+x = 1
+for(i in 1:length(mtry_grid)){
+    for(k in 1:5){
+      cv_train = data[-cv_index[[k]],]
+      cv_test = data[cv_index[[k]],]
+      
+      set.seed(1234)
+      cv_acc<-c()
+      rf = randomForest(OC~revenue1+salescost1+noi1+interest1+quickAsset1+
+                          receivableS1+nonCAsset1+tanAsset1+receivableL1+ownerChange, 
+                        data = cv_train, mtry = mtry_grid[i], 
+                        ntree = 10, importance = F)
+      data.pred = predict(rf, newdata = cv_test, type = 'response')
+      rf.pred<-ifelse(data.pred < 0.5, 0, 1)
+      rf.acc<- sum(rf.pred) / length(rf.pred)
+      cv_acc = rf.acc
+    }
+    acc_rf[x, "acc"] = max(cv_acc)
+    x = x + 1
+}
+
+acc_rf
+```
+
+## 문제 6
+### acc_rf에서 가장 높은 Accuracy값의 행을 출력하세요.
+```{r}
+acc_rf[which.max(acc_rf$acc),] %>% print
+```
+
+## 문제 7
+### 가장 좋은 파라미터 조합으로 랜덤포레스트 모델 학습 후, varlmplot과 ggplot을 이용해 시각화하여 이를 해석해주세요.
+```{r}
+#mtry = 3
+set.seed(1234)
+rf = randomForest(as.factor(OC)~ revenue1+salescost1+sga1+noi1+noe1+interest1+
+                profit1+liquidAsset1+quickAsset1+receivableS1+
+                inventoryAsset1+nonCAsset1+tanAsset1+surplus1+
+                ownerChange, data = cv_train, mtry = 3, 
+                        ntree = 10, importance = TRUE)
+imp<-importance(rf)
+imp_rf<-imp[,c(3,4)]
+imp_rf<-imp_rf %>% as.matrix()
+imp_rf<-data.frame(Variable = rownames(imp_rf), imp_rf)
+
+imp_sort_Gini <- transform(imp_rf, 
+                          Variable = reorder(Variable,MeanDecreaseGini))
+
+ggplot(data=imp_sort_Gini, aes(x=Variable, y=MeanDecreaseGini )) +
+  geom_bar(stat='identity',fill='pink',width=0.05)+
+  xlab('Variable Name') + ylab('Mean Decrease Gini')+
+  geom_point(color='pink',size=1.5)+ 
+  theme(panel.background = element_rect(fill = "white",color = "black"),
+        text = element_text(face = "bold", size = 10))+
+  coord_flip() 
+
+```
+
+
+
+# chapter 3
+
+```{r}
+library(MASS)
+library(randomForest)
+```
+
+
+## 문제1
+### Boston 데이터를 8:2로 train과 test set으로 나누세요.
+```{r}
+index <- createDataPartition(Boston$medv,p=0.2,list=FALSE)
+train <-Boston[-index,]
+test <- Boston[index,]
+```
+
+
+## 문제 2
+### expaand.grid를 이용하여 데이터 프레임 만들기
+```{r}
+RMSE_rf <- expand.grid(mtry=c(3,4,5),ntree=c(10,100,200),RMSE=c(NA))
+RMSE_rf
+```
+
+
+
+## 문제 3
+### medv를 종속변수로 하는 랜덤포레스트에 대한 5-fold 그리드서치를 진행하여 RMSE_rf의 RMSE 변수에 해당 RMSE 값을 넣으세요. 
+```{r}
+select<-dplyr::select
+
+set.seed(1234)
+cv_index <- createFolds(Boston$medv, k = 5, list = T)
+mtry_grid <- 3:5
+ntree_grid <- c(10,100,200)
+
+x = 1
+for(i in 1:length(mtry_grid)){
+  for(j in 1:length(ntree_grid)){
+    cv_rmse = c()
+    for(k in 1:5){
+      cv_train = train[-cv_index[[k]],]
+      cv_test = train[cv_index[[k]],]
+      cv_test = na.omit(cv_test)
+      set.seed(1234)
+      rf = randomForest(medv~., 
+                        data = cv_train, 
+                        mtry = mtry_grid[i], 
+                        ntree = ntree_grid[j], 
+                        importance = F)
+      temp_pred = predict(rf, select(cv_test, -medv))
+      temp_RMSE = RMSE(temp_pred, cv_test$medv)
+      cv_rmse[k] = temp_RMSE
+      }
+    RMSE_rf[x, "RMSE"] = mean(cv_rmse)
+    x = x + 1
+  }
+}
+```
+
+
+## 문제 4
+### RMSE_rf에서 가장 낮은 RMSE 값을 가진 행을 출력하세요.
+```{r}
+RMSE_rf[which.min(RMSE_rf$RMSE),]
+```
+
+
+## 문제 5
+### train set으로 그리드 서치로 나온 가장 좋은 조합의 파라미터의 랜덤포레스트를 학습시킨 후, test set의 RMSE를 구하세요.
+```{r}
+#mtry=5, ntree=200
+model_bos = randomForest(medv~.,
+                       data = train, mtry = 5,ntree = 200,
+                       importance = F)
+boston_pred = predict(model_bos, select(test, -medv))
+RMSE(boston_pred, test$medv)
+```

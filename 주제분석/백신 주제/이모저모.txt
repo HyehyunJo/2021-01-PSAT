@@ -1,0 +1,97 @@
+age_group
+18-34 
+35-44
+45-54
+55-64
+65+
+
+education
+< 12 years
+12 years
+Some College
+College Graduate
+
+
+income_poverty
+Below Poverty
+< = $75,000, Above Poverty
+> $75,000
+
+employment_industry	
+A             pxcmvdjn
+B             rucpziij
+C             wxleyezf
+D             saaquncn
+E             xicduogh
+F             ldnlellj
+G             wlfvacwt
+H             nduyfdeo
+I            fcxhlnwr
+J            vjjrobsf
+K            arjwrbjb
+L            atmlpfrs
+N           msuufmds
+M            xqicxuve
+O            phxvnwax
+P            dotnnunm
+Q            mfikgejo
+R            cfqqtusy
+S            mcubkhph
+T            haxffmxo
+U            qnlwzans
+
+employment_occupation
+A               xgwztkwe
+B               xtkaffoo
+C               emcorrxb
+D               vlluhbov
+E               xqwwgdyp
+F               ccgxvspp
+G               qxajmpny
+H               kldqjyjy
+I              mxkfnird
+J             hfxkjkmi
+K              bxpfxfdn
+L              ukymxvdu
+N              cmhcxjea
+M              haliazsg
+O              dlvbwzss
+P              xzmlyyjv
+Q              oijqvulv
+R              rcertsgn
+S              tfqavkke
+T              hodpvpew
+U              uqqtjvyb
+V              pvmttkik
+W              dcjcmpih
+
+
+# hhs_geo_region
+Region1        oxchjgsf
+Region2        bhuqouqj
+Region3        qufhixun
+Region4        lrircsnp
+Region5        atmpeygn
+Region6        lzgpxyit
+Region7        fpwskwrf
+Region8        mlyzmhmf
+Region9        dqpwygqj
+Region10       kbazzjca
+
+
+
+-------------------------------------------
+범주형 변수랑 Y변수(h1n1_vacc)
+
+MHChisqTest에서 독립
+- opinion_seas_sick_from_vacc
+- household_adults 
+- household_children
+
+카이제곱 검정에서 독립
+- census_msa
+-------------------------------------------
+Y변수끼리 독립성
+- 독립 아니다! 
+
+aes(factor=

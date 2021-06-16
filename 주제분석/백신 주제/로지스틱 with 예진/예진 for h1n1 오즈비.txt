@@ -1,0 +1,58 @@
+ (Intercept)                        h1n1_knowledge 1                        h1n1_knowledge 2 
+                              0.9156498                               1.0062405                               1.0234614 
+             h1n1_knowledgeNon Response             behavioral_antiviral_meds 1   behavioral_antiviral_medsNon Response 
+                              1.0118967                               1.0042181                               1.1576454 
+                 behavioral_face_mask 1        behavioral_face_maskNon Response           behavioral_large_gatherings 1 
+                              1.0178676                               1.0649123                               0.9817268 
+behavioral_large_gatheringsNon Response                      doctor_recc_h1n1 1            doctor_recc_h1n1Non Response 
+                              0.9291283                               1.3897992                               0.9853359 
+                 doctor_recc_seasonal 1        doctor_recc_seasonalNon Response                  child_under_6_months 1 
+                              0.8841145                                      NA                               1.0313280 
+       child_under_6_monthsNon Response                         health_worker 1               health_workerNon Response 
+                              1.0476068                               1.0840382                               0.9678581 
+                     health_insurance 1            health_insuranceNon Response           opinion_h1n1_vacc_effective 2 
+                              1.0794386                               0.9165519                               0.9870511 
+          opinion_h1n1_vacc_effective 3           opinion_h1n1_vacc_effective 4           opinion_h1n1_vacc_effective 5 
+                              1.0141468                               1.0412423                               1.1831811 
+opinion_h1n1_vacc_effectiveNon Response                     opinion_h1n1_risk 2                     opinion_h1n1_risk 3 
+                              1.0456554                               1.0462334                               1.0786421 
+                    opinion_h1n1_risk 4                     opinion_h1n1_risk 5           opinion_h1n1_riskNon Response 
+                              1.1708242                               1.2576013                               1.1805757 
+          opinion_h1n1_sick_from_vacc 2           opinion_h1n1_sick_from_vacc 3           opinion_h1n1_sick_from_vacc 4 
+                              0.9622328                               0.9449927                               0.9908491 
+          opinion_h1n1_sick_from_vacc 5 opinion_h1n1_sick_from_vaccNon Response           opinion_seas_vacc_effective 2 
+                              0.9831183                               0.9642846                               1.0011454 
+          opinion_seas_vacc_effective 3           opinion_seas_vacc_effective 4           opinion_seas_vacc_effective 5 
+                              1.0397051                               0.9895427                               0.9635359 
+opinion_seas_vacc_effectiveNon Response                              education1                              education2 
+                              0.9849601                               1.0145101                               1.0146327 
+                             education3                   educationNon Response                            raceHispanic 
+                              1.0209827                               1.0569946                               1.0251598 
+                  raceOther or Multiple                               raceWhite                                 sexMale 
+                              1.0298831                               1.0231000                               1.0223206 
+                         rent_or_ownOwn                         rent_or_ownRent                  hhs_geo_regionRegion10 
+                              0.9711103                               0.9674472                               0.9762219 
+                  hhs_geo_regionRegion2                   hhs_geo_regionRegion3                   hhs_geo_regionRegion4 
+                              0.9966428                               0.9934255                               0.9959843 
+                  hhs_geo_regionRegion5                   hhs_geo_regionRegion6                   hhs_geo_regionRegion7 
+                              0.9854005                               0.9739657                               0.9763116 
+                  hhs_geo_regionRegion8                   hhs_geo_regionRegion9           census_msaMSA, Principle City 
+                              0.9963332                               0.9709784                               1.0074473 
+                      census_msaNon-MSA                      household_adults 1                      household_adults 2 
+                              1.0122036                               1.0141899                               1.0106396 
+                     household_adults 3            household_adultsNon Response                    employment_industryB 
+                              0.9944160                               1.0112047                               1.0141020 
+                   employment_industryC                    employment_industryD                    employment_industryE 
+                              1.0520845                               1.0551481                               1.0240340 
+                   employment_industryF                    employment_industryG                    employment_industryH 
+                              1.0238759                               1.0084236                               1.0568033 
+                   employment_industryI                    employment_industryJ                    employment_industryK 
+                              1.0547956                               1.0102191                               1.0585823 
+                   employment_industryL                    employment_industryM                    employment_industryN 
+                              0.9966278                               1.0151778                               0.9993957 
+        employment_industryNon Response                    employment_industryO                    employment_industryP 
+                              1.0330207                               1.0323219                               0.9942474 
+                   employment_industryQ                    employment_industryR                    employment_industryS 
+                              1.0088502                               0.9988447                               1.0081052 
+                   employment_industryT                    employment_industryU                        seasonal_vaccine 
+                              1.3528541                               1.0289899                               1.2527252
